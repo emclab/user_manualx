@@ -1,0 +1,19 @@
+<% if @view_in_config && @erb_code %>
+  <%= render inline: @erb_code %>
+  
+<% else %>
+<%= simple_form_for @manual do |f| %>    
+ 
+  <%= f.input :subject, :label => t('Subject') %>  
+  <%= f.input :content, :label => t('Content'), :input_html => {:rows => 8} %> 
+  <%= f.input :category_id, :collection => UserManualx.category_class.scoped, :label => t('Subject Category'),
+                                 :label_method => :name, :value_method => :id %>  
+  
+  <%= link_to t('Back'), SUBURI + "/authentify/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.button :submit, t('Save') , :class => BUTTONS_CLS['action'] %>  
+<% end %> 
+
+<% end %> 
+
+

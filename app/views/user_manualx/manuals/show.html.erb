@@ -1,0 +1,40 @@
+<% if @view_in_config && @erb_code %>
+  <%= render inline: ERB.new(@erb_code).result(binding) %>
+  
+<% else %>
+<div id="main_body">
+
+<h1><%=@title %></h1>
+
+<p>
+  <b><%=t('Subject')%></b>
+  <%= @manual.subject %>
+</p>
+<p>
+  <b><%=t('Content') %></b>
+  <%= @manual.content %>
+</p>
+<p>
+  <b><%=t('Subject Category') %></b>
+  <%= @manual.category.name if @manual.category_id.present? %>
+</p>
+<p>
+  <b><%= t('Submited By') %></b>
+  <%= @manual.submited_by.name if @manual.submited_by_id.present? %>
+</p>
+
+<p>
+  <b><%= t('Last Updated By') %></b>
+  <%= @manual.last_updated_by.name if @manual.last_updated_by_id.present? %>
+</p>
+
+   <table class="table table-striped">
+	  <tr>
+	    <th>
+          <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :id => 'close', :class => BUTTONS_CLS['action'] %>
+   		</th>
+	  </tr>
+	</table> 
+</div>
+
+<% end %>

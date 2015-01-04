@@ -1,0 +1,35 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+  
+zh-CN:
+  
+  #commonx
+  Ranking Index : '排序#'
+  Data Error. Not Saved!  : '数据错误。无法保存！'
+  'Brief Note:' : '简注：'
+  'Note:' : '注释：'
+  'Log:'  : '记录：'
+  'Active:' : '有效：'
+  Yes : '是'
+  No  : '否'
+  yes : '是'
+  no  : '否'
+  Ranking Index         : '排序#'
+  'Ranking Index:'       : '排序#:'
+  Duplicate Subject! : '重名！'
+  Submited By : '输入人'
+  Last Updated By : '更改'
+  Successfully Saved! : '已保存！'
+  Successfully Updated! : '已更新！'
+  'Data Error. Not Saved!' : '数据错误。无法保存！'
+  'Data Error. Not Updated!' : '数据错误。无法更新！'
+  New Subject : '新问题'
+  Edit Subject : '更新问题'
+  Subject Info : '解答信息'
+  Create Date : '生成日期'
+  Subject Category : '问题分类'
+  Subject Sub Category : '问题细分类'
+  Content : '内容'
+  Edit : '编辑'
+  Save : '保存'
+  

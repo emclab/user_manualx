@@ -1,0 +1,42 @@
+<% if @view_in_config && @erb_code %>
+<%= render inline: ERB.new(@erb_code).result(binding) %>
+<% else %>
+
+<div id="main_body">
+<h1><%=t('Suppliers')%></h1>
+<div class="byop_pagination"><%= will_paginate models %></div>
+<table class="table table-striped">
+  <tr>
+    <th><%=t('Create Date')%></th>
+    <th><%=t('Subject')%></th>
+    <th><%=t('Content')%></th>
+    <th><%=t('Submited By')%></th>
+    <th><%=t('Last Updated By')%></th>
+    <th></th>
+ 
+  </tr>
+
+<% models.each do |r| %>
+  <tr>
+  	
+  	<td><%= r.created_at.strftime("%Y/%m/%d") %></td>
+    <td><%= link_to r.subject, SUBURI + "/view_handler?index=1&url=#{manual_path(r)}"   %></td>
+    <td><%= r.content[0..80] %></td>
+    <td><%= r.submited_by.name if r.submited_by_id.present? %></td> 
+    <td><%= r.last_updated_by.name  if r.last_updated_by_id.present? %></td> 
+    <td><%= link_to t('Edit'), SUBURI + "/view_handler?index=1&url=#{edit_manual_path(r)}", :class => BUTTONS_CLS['action'] if has_action_right?('update', params[:controller], r) %></td>
+
+  </tr>
+<% end %>
+   <table class="table table-striped">
+	  <tr>
+	    <th>
+  		  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
+  		  &nbsp;&nbsp;&nbsp;&nbsp;
+  		  <%= link_to t('New Subject'), SUBURI + "/view_handler?index=1&url=#{new_manual_path}", :class => BUTTONS_CLS['action'] if has_action_right?('create', params[:controller]) %>
+        </th>
+	  </tr>
+	</table> 
+</div>
+
+<% end %>
