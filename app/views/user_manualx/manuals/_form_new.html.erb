@@ -6,7 +6,7 @@
  
   <%= f.input :subject, :label => t('Subject') %>  
   <%= f.input :content, :label => t('Content'), :input_html => {:rows => 8} %> 
-  <%= f.input :category_id, :collection => UserManualx.category_class.scoped, :label => t('Subject Category'),
+  <%= f.input :category_id, :collection => UserManualx.category_class.where(for_which: 'manual_category').scoped, :label => t('Subject Category'),
                                  :label_method => :name, :value_method => :id, :include_blank => true %>  
   
   <%= link_to t('Back'), SUBURI + "/authentify/view_handler?index=0", :class => BUTTONS_CLS['action'] %>

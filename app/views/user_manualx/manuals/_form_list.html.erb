@@ -3,7 +3,6 @@
 <% else %>
 
 <div id="main_body">
-<h1><%=t('Suppliers')%></h1>
 <div class="byop_pagination"><%= will_paginate models %></div>
 <table class="table table-striped">
   <tr>
@@ -31,7 +30,7 @@
    <table class="table table-striped">
 	  <tr>
 	    <th>
-  		  <%= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
+  		  <%#= link_to t('Back'), SUBURI + "/view_handler?index=0", :class => BUTTONS_CLS['action'] %>
   		  &nbsp;&nbsp;&nbsp;&nbsp;
   		  <%= link_to t('New Subject'), SUBURI + "/view_handler?index=1&url=#{new_manual_path}", :class => BUTTONS_CLS['action'] if has_action_right?('create', params[:controller]) %>
         </th>

@@ -23,6 +23,7 @@ zh-CN:
   Successfully Updated! : '已更新！'
   'Data Error. Not Saved!' : '数据错误。无法保存！'
   'Data Error. Not Updated!' : '数据错误。无法更新！'
+  Subjects : '问题一览'
   New Subject : '新问题'
   Edit Subject : '更新问题'
   Subject Info : '解答信息'
@@ -32,4 +33,4 @@ zh-CN:
   Content : '内容'
   Edit : '编辑'
   Save : '保存'
-  
+  Manual Search : '帮助问题搜索'
