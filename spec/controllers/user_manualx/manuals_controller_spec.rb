@@ -1,10 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module UserManualx
-  describe ManualsController do
+  RSpec.describe ManualsController, type: :controller do
+    routes {UserManualx::Engine.routes}
     before(:each) do
-      controller.should_receive(:require_signin)
-      controller.should_receive(:require_employee)
+      expect(controller).to receive(:require_signin)
+      expect(controller).to receive(:require_employee)
       @pagination_config = FactoryGirl.create(:engine_config, :engine_name => nil, :engine_version => nil, :argument_name => 'pagination', :argument_value => 30)
     end
     
@@ -28,8 +29,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:user_manualx_manual, :category_id => @qs.id)
-        get 'index', {:use_route => :user_manualx}
-        assigns(:manuals).should =~ [sup]
+        get 'index'
+        expect(assigns(:manuals)).to match_array([sup])
       end
     end
   
@@ -39,8 +40,8 @@ module UserManualx
         :sql_code => "")
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
-        get 'new', {:use_route => :user_manualx}
-        response.should be_success
+        get 'new'
+        expect(response).to be_success
       end
     end
   
@@ -51,8 +52,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.attributes_for(:user_manualx_manual)
-        get 'create', {:use_route => :user_manualx, :manual => sup}
-        response.should redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Saved!")
+        get 'create', {:manual => sup}
+        expect(response).to redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Saved!")
       end
       
       it "should render new with data error" do
@@ -61,8 +62,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.attributes_for(:user_manualx_manual, :subject => nil)
-        get 'create', {:use_route => :user_manualx, :manual => sup}
-        response.should render_template('new')
+        get 'create', {:manual => sup}
+        expect(response).to render_template('new')
       end
     end
   
@@ -73,8 +74,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:user_manualx_manual)
-        get 'edit', {:use_route => :user_manualx, :id => sup.id}
-        response.should be_success
+        get 'edit', {:id => sup.id}
+        expect(response).to be_success
       end
             
     end
@@ -87,8 +88,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:user_manualx_manual)
-        get 'update', {:use_route => :user_manualx, :id => sup.id, :manual => {:subject => 'a new name'}}
-        response.should redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Updated!")
+        get 'update', {:id => sup.id, :manual => {:subject => 'a new name'}}
+        expect(response).to redirect_to URI.escape(SUBURI + "/authentify/view_handler?index=0&msg=Successfully Updated!")
       end
       
       it "should render edit with data error" do
@@ -97,8 +98,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:user_manualx_manual)
-        get 'update', {:use_route => :user_manualx, :id => sup.id, :manual => {:subject => ''}}
-        response.should render_template('edit')
+        get 'update', {:id => sup.id, :manual => {:subject => ''}}
+        expect(response).to render_template('edit')
       end
     end
   
@@ -109,8 +110,8 @@ module UserManualx
         session[:user_id] = @u.id
         session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:user_manualx_manual, :last_updated_by_id => session[:user_id], :category_id => @qs.id)
-        get 'show', {:use_route => :user_manualx, :id => sup.id}
-        response.should be_success
+        get 'show', {:id => sup.id}
+        expect(response).to be_success
       end
     end  
   end

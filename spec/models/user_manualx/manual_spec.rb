@@ -1,26 +1,26 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module UserManualx
-  describe Manual do
+  RSpec.describe Manual, type: :model do
     it "should be OK" do
       c = FactoryGirl.build(:user_manualx_manual)
-      c.should be_valid
+      expect(c).to be_valid
     end
     
     it "should take nil subject" do
       c = FactoryGirl.build(:user_manualx_manual, :subject => nil)
-      c.should_not be_valid
+      expect(c).not_to be_valid
     end
     
     it "should reject nil content" do
       c = FactoryGirl.build(:user_manualx_manual, :content => nil)
-      c.should_not be_valid
+      expect(c).not_to be_valid
     end
     
     it "should reject duplidate subject" do
       p = FactoryGirl.create(:user_manualx_manual, :subject => 'test')
       p1 = FactoryGirl.build(:user_manualx_manual, :subject => 'Test')
-      p1.should_not be_valid
+      expect(p1).not_to be_valid
     end
   end
 end

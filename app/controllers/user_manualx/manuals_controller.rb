@@ -2,7 +2,7 @@ require_dependency "user_manualx/application_controller"
 
 module UserManualx
   class ManualsController < ApplicationController
-    before_filter :require_employee
+    before_action :require_employee
     
     def index
       @title = t('Subjects')

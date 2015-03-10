@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "LinkTests" do
+RSpec.describe "LinkTests", type: :request do
   describe "GET /user_manualx_link_tests" do
     mini_btn = 'btn btn-mini '
     ActionView::CompiledTemplates::BUTTONS_CLS =
@@ -49,46 +49,46 @@ describe "LinkTests" do
     end
     it "works! (now write some real specs)" do
       sup = FactoryGirl.create(:user_manualx_manual, :category_id => @qs.id)
-      visit manuals_path
+      visit user_manualx.manuals_path
       save_and_open_page
-      page.should have_content('Subjects')
+      expect(page).to have_content('Subjects')
       #show
       click_link sup.subject    
-      page.should have_content('Subject Info')
+      expect(page).to have_content('Subject Info')
        
-      visit manuals_path   
+      visit user_manualx.manuals_path   
       click_link 'Edit'
       save_and_open_page
-      page.should have_content('Update Subject')
+      expect(page).to have_content('Update Subject')
       fill_in :manual_subject, :with => 'a new subject'
       click_button 'Save'
-      visit manuals_path
-      page.should have_content('a new subject')
+      visit user_manualx.manuals_path
+      expect(page).to have_content('a new subject')
       #bad subject
       click_link 'Edit'
       fill_in :manual_subject, :with => ''
       fill_in :manual_content, :with => 'a bad subject'
-      visit manuals_path
-      page.should_not have_content('a bad subject')
+      visit user_manualx.manuals_path
+      expect(page).not_to have_content('a bad subject')
       
-      visit manuals_path
+      visit user_manualx.manuals_path
       #save_and_open_page
       click_link "New Subject"
       #save_and_open_page
-      page.should have_content('New Subject')
+      expect(page).to have_content('New Subject')
       fill_in :manual_subject, :with => 'create a new subject'
       fill_in :manual_content, :with => 'create a new content'
       click_button 'Save'
-      visit manuals_path
-      page.should have_content('create a new subject')
+      visit user_manualx.manuals_path
+      expect(page).to have_content('create a new subject')
       #bad create
-      visit manuals_path
+      visit user_manualx.manuals_path
       click_link 'New Subject'
       fill_in :manual_subject, :with => 'create bad new subject'
       fill_in :manual_content, :with => ''
       click_button 'Save'
-      visit manuals_path
-      page.should_not have_content('create bad new subject')
+      visit user_manualx.manuals_path
+      expect(page).not_to have_content('create bad new subject')
     end
   end
 end
