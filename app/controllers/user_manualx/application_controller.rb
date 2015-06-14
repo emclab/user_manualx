@@ -7,7 +7,7 @@ module UserManualx
     include Commonx::CommonxHelper
     include Searchx::SearchHelper
     
-    before_action :require_signin
+    #before_action :require_signin
     before_action :max_pagination 
     before_action :check_access_right 
     before_action :load_session_variable, :only => [:new, :edit]  #for parent_record_id & parent_resource in check_access_right
