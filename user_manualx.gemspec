@@ -7,11 +7,11 @@ require "user_manualx/version"
 Gem::Specification.new do |s|
   s.name        = "user_manualx"
   s.version     = UserManualx::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of UserManualx."
-  s.description = "TODO: Description of UserManualx."
+  s.authors     = ["Your name"]
+  s.email       = ["Your email"]
+  s.homepage    = "http://home.com"
+  s.summary     = "Summary of UserManualx."
+  s.description = "Description of UserManualx."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
